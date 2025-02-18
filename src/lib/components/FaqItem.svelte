@@ -1,3 +1,15 @@
+<script>
+  import chevronDown from '$assets/icons/chevron-down.svg';
+</script>
+
+<button class="container">
+  <div class="question-and-answer">
+    <p class="question mb-s">What will I learn from this ebook?</p>
+    <p class="answer">ANSWER TEXT GOES HERE</p>
+  </div>
+  <img src={chevronDown} alt="" />
+</button>
+
 <style>
   .container {
     display: flex;
