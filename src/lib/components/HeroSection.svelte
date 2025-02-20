@@ -31,6 +31,7 @@
       </p>
       <Button>Purchase e-book for $10</Button>
     {/if}
+    <!-- disposable comment for git -->
   </div>
 </section>
 
