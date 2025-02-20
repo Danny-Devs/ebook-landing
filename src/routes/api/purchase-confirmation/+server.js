@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 import { json } from '@sveltejs/kit';
-import { STRIPE_API_KEY, RESEND_API_KEY } from '$env/static/private';
+import { STRIPE_API_KEY, RESEND_API_KEY, WEBHOOK_SECRET } from '$env/static/private';
 import { Resend } from 'resend';
 
 const stripe = new Stripe(STRIPE_API_KEY);
@@ -13,7 +13,7 @@ export async function POST({ request }) {
   let event;
 
   try {
-    event = stripe.webhooks.constructEvent(body, sig, STRIPE_API_KEY);
+    event = stripe.webhooks.constructEvent(body, sig, WEBHOOK_SECRET);
   } catch (err) {
     console.error(`Webhook signature verification failed: ${err.message}`);
     return json(
