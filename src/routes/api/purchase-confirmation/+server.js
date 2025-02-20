@@ -36,7 +36,7 @@ export async function POST({ request }) {
     const session = event.data.object;
     
     const msg = {
-      from: 'daniel@pixeldrift.co',
+      from: 'Daniel Ahn <daniel@pixeldrift.co>',
       to: 'et3rnal.d@gmail.com', // Hardcoded email for testing: original - session.customer_details.email
       subject: 'Purchase Confirmation',
       html: `<strong>Thank you for your purchase!</strong><br>Your session ID is ${session.id}.`
