@@ -53,7 +53,7 @@ export async function POST({ request }) {
 
     const msg = {
       from: 'Daniel Ahn <daniel@pixeldrift.co>',
-      to: customerEmail, // Use the customer email from the session object
+      to: 'et3rnal.d@gmail.com', // Use the customer email from the session object
       subject: 'Purchase Confirmation',
       text: `<strong>Thank you for your purchase!</strong><br>Your session ID is ${session.id}.`,
       attachments: [
