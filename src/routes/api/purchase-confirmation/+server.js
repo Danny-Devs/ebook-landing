@@ -42,18 +42,9 @@ export async function POST({ request }) {
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
     console.log('session object', session);
-
-    // Extract and log the customer's email
-    const customerEmail = session.customer_details?.email;
-    if (!customerEmail) {
-      console.error('Customer email not found in session object');
-      return json({ error: 'Customer email not found' }, { status: 400 });
-    }
-    console.log('Customer email:', customerEmail);
-
     const msg = {
       from: 'Daniel Ahn <daniel@pixeldrift.co>',
-      to: 'et3rnal.d@gmail.com', // Use the customer email from the session object
+      to: session.customer_details.email, // Corrected path to customer's email
       subject: 'Purchase Confirmation',
       text: `<strong>Thank you for your purchase!</strong><br>Your session ID is ${session.id}.`,
       attachments: [
@@ -67,7 +58,7 @@ export async function POST({ request }) {
     try {
       await resend.emails.send(msg);
       console.log(
-        `Payment for session ${session.id} was successful! Confirmation email sent to ${customerEmail}.`
+        `Payment for session ${session.id} was successful! Confirmation email sent.`
       );
     } catch (error) {
       console.error(`Error sending confirmation email: ${error.message}`);
