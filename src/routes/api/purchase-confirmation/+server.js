@@ -44,7 +44,7 @@ export async function POST({ request }) {
 
     const msg = {
       from: 'Daniel Ahn <daniel@pixeldrift.co>',
-      to: 'et3rnal.d@gmail.com', // Hardcoded email for testing: original - session.customer_details.email
+      to: session.customer.email, // Hardcoded email for testing: original - 
       subject: 'Purchase Confirmation',
       text: `<strong>Thank you for your purchase!</strong><br>Your session ID is ${session.id}.`,
       attachments: [
