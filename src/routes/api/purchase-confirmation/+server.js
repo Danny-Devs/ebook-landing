@@ -2,12 +2,12 @@ import Stripe from 'stripe';
 import { json } from '@sveltejs/kit';
 import {
   STRIPE_API_KEY,
-  SENDGRID_API_KEY
+  RESEND_API_KEY,
 } from '$env/static/private';
 import { Resend } from 'resend';
 
 const stripe = new Stripe(STRIPE_API_KEY);
-const resend = new Resend(SENDGRID_API_KEY);
+const resend = new Resend(RESEND_API_KEY);
 
 export async function POST({ request }) {
   const sig = request.headers.get('stripe-signature');
