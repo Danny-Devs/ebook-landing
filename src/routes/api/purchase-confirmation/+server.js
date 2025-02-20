@@ -8,7 +8,7 @@ const resend = new Resend(RESEND_API_KEY);
 
 export async function POST({ request }) {
   const sig = request.headers.get('stripe-signature');
-  const body = await request.body(); // Use request.body() to get the raw request body
+  const body = await request.text(); // Use request.body() to get the raw request body
 
   let event;
 
