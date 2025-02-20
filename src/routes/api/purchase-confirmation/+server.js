@@ -1,10 +1,17 @@
 import Stripe from 'stripe';
 import { json } from '@sveltejs/kit';
-import { STRIPE_API_KEY, RESEND_API_KEY, WEBHOOK_SECRET } from '$env/static/private';
+import {
+  STRIPE_API_KEY,
+  RESEND_API_KEY,
+  WEBHOOK_SECRET
+} from '$env/static/private';
 import { Resend } from 'resend';
 
 const stripe = new Stripe(STRIPE_API_KEY);
 const resend = new Resend(RESEND_API_KEY);
+
+const PDF_GUIDE_URL =
+  'https://narrify-public.s3.eu-central-1.amazonaws.com/sample.pdf';
 
 export async function POST({ request }) {
   // Verify we have the required headers
@@ -34,12 +41,18 @@ export async function POST({ request }) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    
+
     const msg = {
       from: 'Daniel Ahn <daniel@pixeldrift.co>',
       to: 'et3rnal.d@gmail.com', // Hardcoded email for testing: original - session.customer_details.email
       subject: 'Purchase Confirmation',
-      html: `<strong>Thank you for your purchase!</strong><br>Your session ID is ${session.id}.`
+      text: `<strong>Thank you for your purchase!</strong><br>Your session ID is ${session.id}.`,
+      attachments: [
+        {
+          path: PDF_GUIDE_URL,
+          filename: 'Digital Ebook - Spain Relocation.pdf'
+        }
+      ]
     };
 
     try {
