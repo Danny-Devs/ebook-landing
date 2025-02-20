@@ -36,7 +36,7 @@ export async function POST({ request }) {
     };
 
     try {
-      await resend.emails.send(msg);
+      resend.emails.send(msg);
       console.log(
         `Payment for session ${session.id} was successful! Confirmation email sent.`
       );
