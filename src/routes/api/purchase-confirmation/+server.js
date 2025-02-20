@@ -41,7 +41,7 @@ export async function POST({ request }) {
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-
+    console.log('session object', session);
     const msg = {
       from: 'Daniel Ahn <daniel@pixeldrift.co>',
       to: session.customer_details.email, // Corrected path to customer's email
