@@ -4,7 +4,7 @@ import {
   STRIPE_API_KEY,
   SENDGRID_API_KEY
 } from '$env/static/private';
-import resend from 'resend';
+import { Resend } from 'resend';
 
 const stripe = new Stripe(STRIPE_API_KEY);
 const resend = new Resend(SENDGRID_API_KEY);
