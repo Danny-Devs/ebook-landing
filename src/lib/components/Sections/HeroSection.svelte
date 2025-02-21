@@ -29,7 +29,6 @@
         calculating my cost of living, choosing an apartment. That's why I wrote
         this e-book--to tell you how I did it. No bull, no stress.
       </p>
-      <Button>Purchase e-book for $10</Button>
     {/if}
     <!-- disposable comment for git -->
   </div>
